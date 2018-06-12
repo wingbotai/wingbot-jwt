@@ -10,6 +10,7 @@ const SECRET = 'foobar';
 
 const SENDER_ID = 'hello';
 const SENDER_ID2 = 'hello2';
+const PAGE_ID = 'pageid';
 
 
 describe('<BotTokenStorage>', function () {
@@ -19,14 +20,16 @@ describe('<BotTokenStorage>', function () {
         it('creates token', async () => {
             const bts = new BotTokenStorage(SECRET);
 
-            let token = await bts.getOrCreateToken(SENDER_ID);
+            let token = await bts.getOrCreateToken(SENDER_ID, PAGE_ID);
 
-            assert.strictEqual(token.senderId, SENDER_ID);
+            assert.strictEqual(token.senderId, SENDER_ID, PAGE_ID);
+            assert.strictEqual(token.pageId, PAGE_ID);
             assert.strictEqual(typeof token.token, 'string');
 
-            token = await bts.getOrCreateToken(SENDER_ID);
+            token = await bts.getOrCreateToken(SENDER_ID, PAGE_ID);
 
             assert.strictEqual(token.senderId, SENDER_ID);
+            assert.strictEqual(token.pageId, PAGE_ID);
             assert.strictEqual(typeof token.token, 'string');
         });
 
@@ -34,8 +37,8 @@ describe('<BotTokenStorage>', function () {
             const bts = new BotTokenStorage(SECRET);
 
             const tokens = await Promise.all([
-                bts.getOrCreateToken('a'),
-                bts.getOrCreateToken('a')
+                bts.getOrCreateToken('a', PAGE_ID),
+                bts.getOrCreateToken('a', PAGE_ID)
             ]);
 
             assert.ok(tokens.every(t => t.senderId === 'a' && typeof t.token === 'string'));
@@ -52,11 +55,12 @@ describe('<BotTokenStorage>', function () {
 
             assert.strictEqual(token, null);
 
-            const t = await bts.getOrCreateToken(SENDER_ID2);
+            const t = await bts.getOrCreateToken(SENDER_ID2, PAGE_ID);
 
             token = await bts.findByToken(t.token);
 
             assert.strictEqual(token.senderId, SENDER_ID2);
+            assert.strictEqual(token.pageId, PAGE_ID);
             assert.strictEqual(typeof token.token, 'string');
         });
 

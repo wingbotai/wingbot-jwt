@@ -36,12 +36,12 @@ const processor = new Processor(bot, {
 ## BotTokenStorage
 Storage for JWT tokens
 
-**Kind**: global class
+**Kind**: global class  
 
 * [BotTokenStorage](#BotTokenStorage)
     * [new BotTokenStorage(secretOrPrivateKey, [jwtOptions])](#new_BotTokenStorage_new)
     * [.findByToken(token)](#BotTokenStorage+findByToken) ⇒ <code>Promise.&lt;(Token\|null)&gt;</code>
-    * [.getOrCreateToken(senderId)](#BotTokenStorage+getOrCreateToken) ⇒ <code>Promise.&lt;(Token\|null)&gt;</code>
+    * [.getOrCreateToken(senderId, pageId)](#BotTokenStorage+getOrCreateToken) ⇒ <code>Promise.&lt;(Token\|null)&gt;</code>
 
 <a name="new_BotTokenStorage_new"></a>
 
@@ -49,35 +49,37 @@ Storage for JWT tokens
 
 | Param | Type |
 | --- | --- |
-| secretOrPrivateKey | <code>string</code> \| <code>Buffer</code> |
-| [jwtOptions] | <code>Object</code> |
+| secretOrPrivateKey | <code>string</code> \| <code>Buffer</code> | 
+| [jwtOptions] | <code>Object</code> | 
 
 <a name="BotTokenStorage+findByToken"></a>
 
 ### botTokenStorage.findByToken(token) ⇒ <code>Promise.&lt;(Token\|null)&gt;</code>
-**Kind**: instance method of [<code>BotTokenStorage</code>](#BotTokenStorage)
+**Kind**: instance method of [<code>BotTokenStorage</code>](#BotTokenStorage)  
 
 | Param | Type |
 | --- | --- |
-| token | <code>string</code> |
+| token | <code>string</code> | 
 
 <a name="BotTokenStorage+getOrCreateToken"></a>
 
-### botTokenStorage.getOrCreateToken(senderId) ⇒ <code>Promise.&lt;(Token\|null)&gt;</code>
-**Kind**: instance method of [<code>BotTokenStorage</code>](#BotTokenStorage)
+### botTokenStorage.getOrCreateToken(senderId, pageId) ⇒ <code>Promise.&lt;(Token\|null)&gt;</code>
+**Kind**: instance method of [<code>BotTokenStorage</code>](#BotTokenStorage)  
 
 | Param | Type |
 | --- | --- |
-| senderId | <code>string</code> |
+| senderId | <code>string</code> | 
+| pageId | <code>string</code> | 
 
 <a name="Token"></a>
 
 ## Token : <code>Object</code>
-**Kind**: global typedef
+**Kind**: global typedef  
 **Properties**
 
 | Name | Type |
 | --- | --- |
-| senderId | <code>string</code> |
-| token | <code>string</code> |
+| senderId | <code>string</code> | 
+| pageId | <code>string</code> | 
+| token | <code>string</code> | 
 

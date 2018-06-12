@@ -8,6 +8,7 @@ const jsonwebtoken = require('jsonwebtoken');
 /**
  * @typedef {Object} Token
  * @prop {string} senderId
+ * @prop {string} pageId
  * @prop {string} token
  */
 
@@ -77,11 +78,12 @@ class BotTokenStorage {
     /**
      *
      * @param {string} senderId
+     * @param {string} pageId
      * @returns {Promise<Token|null>}
      */
-    getOrCreateToken (senderId) {
-        return this._sign({ senderId })
-            .then(token => ({ token, senderId }));
+    getOrCreateToken (senderId, pageId) {
+        return this._sign({ senderId, pageId })
+            .then(token => ({ token, senderId, pageId }));
     }
 
 }
