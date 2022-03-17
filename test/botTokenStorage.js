@@ -12,7 +12,6 @@ const SENDER_ID = 'hello';
 const SENDER_ID2 = 'hello2';
 const PAGE_ID = 'pageid';
 
-
 describe('<BotTokenStorage>', function () {
 
     describe('#getOrCreateToken()', () => {
@@ -41,7 +40,7 @@ describe('<BotTokenStorage>', function () {
                 bts.getOrCreateToken('a', PAGE_ID)
             ]);
 
-            assert.ok(tokens.every(t => t.senderId === 'a' && typeof t.token === 'string'));
+            assert.ok(tokens.every((t) => t.senderId === 'a' && typeof t.token === 'string'));
         });
 
     });

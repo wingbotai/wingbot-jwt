@@ -6,7 +6,7 @@
 const jsonwebtoken = require('jsonwebtoken');
 
 /**
- * @typedef {Object} Token
+ * @typedef {object} Token
  * @prop {string} senderId
  * @prop {string} pageId
  * @prop {string} token
@@ -20,7 +20,7 @@ class BotTokenStorage {
     /**
      *
      * @param {string|Buffer} secretOrPrivateKey
-     * @param {Object} [jwtOptions]
+     * @param {object} [jwtOptions]
      */
     constructor (secretOrPrivateKey, jwtOptions = {}) {
         this._secretOrPrivateKey = secretOrPrivateKey;
@@ -72,7 +72,7 @@ class BotTokenStorage {
         }
 
         return this._verify(token)
-            .then(t => (t ? Object.assign(t, { token }) : null));
+            .then((t) => (t ? Object.assign(t, { token }) : null));
     }
 
     /**
@@ -83,7 +83,7 @@ class BotTokenStorage {
      */
     getOrCreateToken (senderId, pageId) {
         return this._sign({ senderId, pageId })
-            .then(token => ({ token, senderId, pageId }));
+            .then((token) => ({ token, senderId, pageId }));
     }
 
 }
